@@ -1,0 +1,40 @@
+* {
+ 	font-family: Calibri, Arial, serif;
+}
+
+header {
+	width: 50%;
+	height: auto;
+	text-align: center;
+}
+
+nav {
+	width: 100%;
+	float: left;
+	text-align: center;
+	margin-bottom: 1.5%;
+}
+
+article {
+	float: left;
+	background-color: #5D6970;
+	color: #ffffff;
+	margin-left: 12.5%;
+	margin-right: 12.5%;
+	width: 75%;
+}
+
+footer {
+	width: 100%;
+	float: left;
+	margin-top: 1.5%;
+	text-align: center;
+}
+
+.Inhalt a {
+	margin-left: 5%;
+}
+
+.Ges-Angaben {
+	margin-left: 50px;
+}
