@@ -17,7 +17,7 @@
 		<nav class = "Inhalt">
 			<h1>Schornsteinfeger Hilden</h1>
 			<hr />
-			<a href="Home.php" style = "margin-left: -2.5%;">Home</a>
+			<a href="../index.php" style = "margin-left: -2.5%;">Home</a>
 			<a href="Faehigkeiten.php">Fähigkeiten</a>
 			<a href="Preise.php">Preise</a>
 			<a href="Beispiele_unserer_Arbeit.php">Beispiele unserer Arbeit</a>

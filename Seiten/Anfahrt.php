@@ -6,8 +6,7 @@
     <meta name="Author" content="Nils Salger">
     <meta name="keywords" content="Schornsteinfeger, Handwerker, Allrounder, Hilden">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/openlayers/openlayers.github.io@master/en/v6.4.3/css/ol.css" type="text/css">
     <link rel="stylesheet" href="../CSS/styling.css">
     <style>
         .map {
@@ -25,18 +24,19 @@
     <header>
         <h1>Anfahrt</h1>
     </header>
-    
-		<nav class = "Inhalt">
-			<hr />
-			<a href="../Home.php" style="margin-left: -2.5%;">Home</a>
-			<a href="Faehigkeiten.php">Fähigkeiten</a>
-			<a href="Preise.php">Preise</a>
-			<a href="Beispiele_unserer_Arbeit.php">Beispiele unserer Arbeit</a>
-			<a href="Kontakt.php">Kontakt</a>
-			<a href="Anfahrt.php">Anfahrt</a>
-			<hr />
-		</nav>
-		
+
+    <nav class="Inhalt">
+        <hr />
+        <a href="../index.php" style="margin-left: -2.5%;">Home</a>
+        <a href="Faehigkeiten.php">Fähigkeiten</a>
+        <a href="Preise.php">Preise</a>
+        <a href="Beispiele_unserer_Arbeit.php">Beispiele unserer Arbeit</a>
+        <a href="Kontakt.php">Kontakt</a>
+        <a href="Anfahrt.php">Anfahrt</a>
+        <a href="Beschwerden.php">Beschwerden</a>
+        <hr />
+    </nav>
+
     <div class="drive">
         <p>Sollten sie keine möglichkeit haben uns Telefonisch oder per Mail zu erreichen, können sie uns auch
             zu unseren Unternehmen kommen, und persönlich mit uns in Kontakt kommen.</p>
@@ -82,7 +82,7 @@
             });
             map.addOverlay(overlay);
 
-            closer.onclick = function () {
+            closer.onclick = function() {
                 overlay.setPosition(undefined);
                 closer.blur();
                 return false;
@@ -92,12 +92,12 @@
             overlay.setPosition(ol.proj.fromLonLat([6.947701, 51.167097]));
         </script>
 
-    <footer class = "Inhalt">
-		<hr />
-		<a href="Impressum.php" style="margin-left: -2.5%;">Impressum</a>
-		<a href="Datenschutz.php">Datenschutz</a>
-		<hr />
-	</footer>
+        <footer class="Inhalt">
+            <hr />
+            <a href="Impressum.php" style="margin-left: -2.5%;">Impressum</a>
+            <a href="Datenschutz.php">Datenschutz</a>
+            <hr />
+        </footer>
 </body>
 
 </html>

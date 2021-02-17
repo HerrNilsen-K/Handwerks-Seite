@@ -17,7 +17,7 @@
 
     <nav class="Inhalt">
         <hr />
-        <a href="../Home.php" style="margin-left: -2.5%;">Home</a>
+        <a href="../index.php" style="margin-left: -2.5%;">Home</a>
         <a href="Faehigkeiten.php">Fähigkeiten</a>
         <a href="Preise.php">Preise</a>
         <a href="Beispiele_unserer_Arbeit.php">Beispiele unserer Arbeit</a>
@@ -33,13 +33,6 @@
 
         <div class="formular">
             <form method="post">
-                <span>Sie haben bereits einen Wunschtermin und wollen die Daten überprüfen?</span>
-                <br>
-                <input type="radio" name="dateSet">
-                <label>Ja</label>
-                <input type="radio" name="dateSet">
-                <label>Nein</label>
-                <br>
                 <span>Anrede:<span>
                         <br>
                         <input type="radio" id="genderMale" name="gender" value="Herr">
@@ -116,9 +109,23 @@
                     }
                 }
 
-                //Greet the user if no errors occured
-                if ($formCorrect == true) {
-                    echo "<b>Herzlich willkommen, " . $_POST["gender"] . " " . $_POST["givenName"] . " " . $_POST["name"] . "</b>";
+                //Greet the user and save his date if no errors occured
+                if ($formCorrect) {
+                    $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a");
+                    $ticketNumber = fread($counterFilePointer, 8);
+
+
+                    fwrite($counterFilePointer, $ticketNumber + 1, 8);
+                    
+                    echo "<br> <span>Ihre E-Mail ist eingegangen. Wir werden uns in kürze bei ihnen melden " . $_POST['gender'] . " " . $_POST['name'] . ".<br>" . 
+                    "Ihre Auftragsnummger: " . $ticketNumber . "</span>";
+                    
+                    $filePointer = fopen("../datenbanken/database.txt", "a");
+                    if (!$filePointer) {
+                        echo "<span>An error occured. Please reload the Page</span>";
+                    } else {
+                        //fwrite($filePointer, )
+                    }
                 }
             } else {
             }
