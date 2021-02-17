@@ -111,15 +111,31 @@
 
                 //Greet the user and save his date if no errors occured
                 if ($formCorrect) {
-                    $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a");
-                    $ticketNumber = fread($counterFilePointer, 8);
+                    $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a+");
+                    if (!$counterFilePointer) {
+                        echo "<span>An error occured. Please reload the Page</span>";
+                    } else {
+                        $ticketNumber = fread($counterFilePointer, 20);
+                        echo $ticketNumber . "<br>";
+                        $year = substr($ticketNumber, 0, 4);
+                        echo $year . "<br>";
+                        $ticketNumber = substr($ticketNumber, 5, 4);
+                        echo $ticketNumber . "<br>";
+                        fclose($counterFilePointer);
 
+                        $temp = fopen("../datenbanken/ticketCounter.txt", "w");
+                        fclose($temp);
 
-                    fwrite($counterFilePointer, $ticketNumber + 1, 8);
-                    
-                    echo "<br> <span>Ihre E-Mail ist eingegangen. Wir werden uns in kürze bei ihnen melden " . $_POST['gender'] . " " . $_POST['name'] . ".<br>" . 
-                    "Ihre Auftragsnummger: " . $ticketNumber . "</span>";
-                    
+                        $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a+");
+                        $num = (int)$ticketNumber;
+                        fwrite($counterFilePointer, $year . "-" . $num + 1, 8);
+                        echo $year . "-" . $num + 1 . "<br>";
+
+                        fclose($counterFilePointer);
+                        echo "<br> <span>Ihre E-Mail ist eingegangen. Wir werden uns in kürze bei ihnen melden " . $_POST['gender'] . " " . $_POST['name'] . ".<br>" .
+                            "Ihre Auftragsnummger: " . $ticketNumber . "</span>";
+                    }
+
                     $filePointer = fopen("../datenbanken/database.txt", "a");
                     if (!$filePointer) {
                         echo "<span>An error occured. Please reload the Page</span>";
