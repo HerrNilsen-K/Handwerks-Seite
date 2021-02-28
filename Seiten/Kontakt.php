@@ -71,7 +71,7 @@
                 $formCorrect = true;
                 //Output the errors
                 if (!empty($inputErrorLog)) {
-                    echo "<br \>";
+                    echo "<br>";
                     foreach ($inputErrorLog as $error)
                         echo ($error . "<br  />");
                     $formCorrect = false;
@@ -127,9 +127,9 @@
                         fclose($temp);
 
                         $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a+");
-                        $num = (int)$ticketNumber;
-                        fwrite($counterFilePointer, $year . "-" . $num + 1, 8);
-                        echo $year . "-" . $num + 1 . "<br>";
+                        $num = (int)$ticketNumber + 1;
+                        fwrite($counterFilePointer, $year . "-" . $num, 8);
+                        echo $year . "-" . $num . "<br>";
 
                         fclose($counterFilePointer);
                         echo "<br> <span>Ihre E-Mail ist eingegangen. Wir werden uns in kürze bei ihnen melden " . $_POST['gender'] . " " . $_POST['name'] . ".<br>" .

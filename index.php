@@ -37,7 +37,7 @@
 		<a href="Seiten/Beispiele_unserer_Arbeit.php">Beispiele unserer Arbeit</a>
 		<a href="Seiten/Kontakt.php">Kontakt</a>
 		<a href="Seiten/Anfahrt.php">Anfahrt</a>
-		<a href="Beschwerden.php">Beschwerden</a>
+		<a href="Seiten/Beschwerden.php">Beschwerden</a>
 		<hr />
 	</nav>
 
