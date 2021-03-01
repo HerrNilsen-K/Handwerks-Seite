@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+($_POST['send'])<!DOCTYPE html>
 <html lang="de">
 
 <head>

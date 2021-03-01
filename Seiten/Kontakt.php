@@ -111,36 +111,38 @@
 
                 //Greet the user and save his date if no errors occured
                 if ($formCorrect) {
+                    $newTicket = 0;
                     $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a+");
                     if (!$counterFilePointer) {
                         echo "<span>An error occured. Please reload the Page</span>";
-                    } else {
+                    } else {    //Update the ticket counter
                         $ticketNumber = fread($counterFilePointer, 20);
-                        echo $ticketNumber . "<br>";
                         $year = substr($ticketNumber, 0, 4);
-                        echo $year . "<br>";
                         $ticketNumber = substr($ticketNumber, 5, 4);
-                        echo $ticketNumber . "<br>";
                         fclose($counterFilePointer);
 
+                        //Delete the files content
                         $temp = fopen("../datenbanken/ticketCounter.txt", "w");
                         fclose($temp);
 
                         $counterFilePointer = fopen("../datenbanken/ticketCounter.txt", "a+");
                         $num = (int)$ticketNumber + 1;
-                        fwrite($counterFilePointer, $year . "-" . $num, 8);
-                        echo $year . "-" . $num . "<br>";
+                        $newTicket = $year . "-" . $num;
+                        fwrite($counterFilePointer, $newTicket, 8);
+                        //echo $newTicket . "<br>";
 
                         fclose($counterFilePointer);
                         echo "<br> <span>Ihre E-Mail ist eingegangen. Wir werden uns in kürze bei ihnen melden " . $_POST['gender'] . " " . $_POST['name'] . ".<br>" .
-                            "Ihre Auftragsnummger: " . $ticketNumber . "</span>";
+                            "Ihre Auftragsnummger: " . $newTicket . "</span>";
                     }
 
                     $filePointer = fopen("../datenbanken/database.txt", "a");
-                    if (!$filePointer) {
+                    if (!$filePointer) {    //Update the database
                         echo "<span>An error occured. Please reload the Page</span>";
                     } else {
-                        //fwrite($filePointer, )
+                        fseek($filePointer, 0, SEEK_END);
+                        fwrite($filePointer, $_POST['email'] . " " . $newTicket . "\n", strlen($_POST['email']) + 8 + 1 + 1);
+                        fclose($filePointer);
                     }
                 }
             } else {

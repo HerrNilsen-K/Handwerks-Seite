@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="author" content="Niko Dobyak">
+    <meta name="author" content="Nils Salger">
     <meta name="keywords" content="Schornsteinfeger, Handwerker, Allround, Hilden">
 
     <title>Beschwerden</title>
@@ -31,20 +31,42 @@
 <span>Jetzt ein Ticket ziehen, damit ein Mitarbeiter sich um ihr Anliegen kümmern</span>
 
 <form method="post">
-    <label>Ihre Auftrags-ID</label>
-    <input type="number" name="order-ID">
+    <label >Ihre E-Mail:</label>
+    <input type="email" required>
     <br>
-    <label>Bitt beschreiben Sie kurz das Problem</label>
+    <label for="ticket">Ihre Auftrags-ID</label>
+    <input type="text" name="ticket" id="ticket" required>
     <br>
-    <textarea name="problem" cols="30" rows="10"></textarea>
+    <label for="problem">Bitt beschreiben Sie kurz das Problem</label>
+    <br>
+    <textarea name="problem" cols="30" rows="10" id="problem" required></textarea>
+    <br>
+    <input type="submit" name="send" value="Senden">
     <br>
 </form>
+
+    <?php
+    if (isset($_POST['send'])) {
+        $databaseFilePointer = fopen("../datenbanken/database.txt", "r");
+        while (($dataString = fgets($databaseFilePointer)) !== false) {
+            $seperateEmail = strtok($dataString, " ");
+            $seperateTicket = substr($dataString, strrpos($dataString, ' ') + 1);
+            echo $_POST['email'];
+            if($_POST['email'] == $seperateEmail && $_POST['ticket'] == $seperateEmail){
+                echo "Email: " . $seperateEmail . "<br>";
+                echo "Ticket: " . $seperateTicket . "<br>";
+                break;
+            }
+        }
+        fclose($databaseFilePointer);
+    }
+    ?>
 
 <footer>
     <hr/>
     <div class="Inhalt">
-        <a href="Seiten/Impressum.php" style="margin-left: -2.5%;">Impressum</a>
-        <a href="Seiten/Datenschutz.php">Datenschutz</a>
+        <a href="Impressum.php" style="margin-left: -2.5%;">Impressum</a>
+        <a href="Datenschutz.php">Datenschutz</a>
     </div>
     <hr/>
 </footer>
