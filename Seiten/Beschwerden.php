@@ -64,6 +64,8 @@
         } else {
             //Es wird nicht angegeben ob email oder ticket falsch ist, um die privatsphäre der Kunden zu schützen (Email könnte herausgefunden werden)
             echo "<span>Die angegebene E-Mail oder das Ticket ist falsch </span>";
+
+            //Problem beschreibung wird als in irgendeiner Form an denn verantwortlichen der Firma gesendet
         }
         fclose($databaseFilePointer);
     }
