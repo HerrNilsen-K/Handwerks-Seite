@@ -31,15 +31,15 @@
 <span>Jetzt ein Ticket ziehen, damit ein Mitarbeiter sich um ihr Anliegen kümmern</span>
 
 <form method="post">
-    <label >Ihre E-Mail:</label>
-    <input type="email" required>
+    <label>Ihre E-Mail:</label>
+    <input type="email" name="email" required>
     <br>
-    <label for="ticket">Ihre Auftrags-ID</label>
-    <input type="text" name="ticket" id="ticket" required>
+    <label>Ihre Auftrags-ID</label>
+    <input type="text" name="ticket" required>
     <br>
     <label for="problem">Bitt beschreiben Sie kurz das Problem</label>
     <br>
-    <textarea name="problem" cols="30" rows="10" id="problem" required></textarea>
+    <textarea name="problem" cols="30" rows="10" required></textarea>
     <br>
     <input type="submit" name="send" value="Senden">
     <br>
@@ -48,15 +48,22 @@
     <?php
     if (isset($_POST['send'])) {
         $databaseFilePointer = fopen("../datenbanken/database.txt", "r");
+        $notError = false;
         while (($dataString = fgets($databaseFilePointer)) !== false) {
             $seperateEmail = strtok($dataString, " ");
-            $seperateTicket = substr($dataString, strrpos($dataString, ' ') + 1);
-            echo $_POST['email'];
-            if($_POST['email'] == $seperateEmail && $_POST['ticket'] == $seperateEmail){
-                echo "Email: " . $seperateEmail . "<br>";
-                echo "Ticket: " . $seperateTicket . "<br>";
+            $seperateTicket = substr($dataString, strrpos($dataString, " ") + 1);
+
+            if($_POST['email'] == $seperateEmail && trim($_POST['ticket']) == trim($seperateTicket)){
+                $notError = true;
                 break;
             }
+        }
+
+        if($notError){
+            echo "<span>Vielen dank das sie auf unseren Kundenservice zugreiffen. Wir werden ihnen schnellst möglich eine E-Mail senden zur bestätigung des termins senden.</span>";
+        } else {
+            //Es wird nicht angegeben ob email oder ticket falsch ist, um die privatsphäre der Kunden zu schützen (Email könnte herausgefunden werden)
+            echo "<span>Die angegebene E-Mail oder das Ticket ist falsch </span>";
         }
         fclose($databaseFilePointer);
     }
